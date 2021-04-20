@@ -1,19 +1,25 @@
 {% extends "blog/base.html" %}
 
-<!-- <style>
-    .justify {
-        text-align: justify;
-        background-color: yellow;
-    }
-</style> -->
-
 {% block content %}
 
 {% if post %}
-<p>Detalhes do post.</p>
-<article class="justify">{{ post.content|safe }}</article>
+<article class="justify">
+    <p id="post-title">{{ post.title }}</p>
+    <p>{{ post.content|safe }}</p>
+</article>
 {% else %}
 <p>Post encontrado.</p>
 {% endif %}
+
+<style>
+    .justify {
+        text-align: justify;
+    }
+
+    #post-title {
+        font-size: 22px;
+        font-weight: bold;
+    }
+</style>
 
 {% endblock content %}

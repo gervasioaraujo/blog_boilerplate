@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        .page-container {
+        .main-container {
             padding: 0 120px;
         }
 
@@ -120,15 +120,13 @@
         </a>
 
         <div class="topnav" id="categories-menu">
-
             <!-- <a href="#home" class="active">Home</a> -->
-
             {% for category in categories %}
             <a href="/category/{{ category.id }}/posts">{{ category.name }}</a>
             {% endfor %}
 
             <a href="javascript:void(0);" class="icon" onclick="toogleIcon()">
-                <i class="fa fa-bars"></i>
+                <i id="menu-icon" class="fa fa-bars"></i>
             </a>
         </div>
 
@@ -149,9 +147,9 @@
 
         function toogleResponsiveContainer() {
             if ($(window).width() < 600) {
-                $(".content-wrapper").removeClass('page-container');
+                $(".content-wrapper").removeClass('main-container');
             } else {
-                $(".content-wrapper").addClass('page-container');
+                $(".content-wrapper").addClass('main-container');
             }
         }
 
@@ -169,6 +167,13 @@
                 categoriesMenu.className += " responsive";
             } else {
                 categoriesMenu.className = "topnav";
+            }
+
+            var menuIcon = document.getElementById("menu-icon");
+            if (menuIcon.className.includes("fa-bars")){
+                menuIcon.className = "fa fa-close";
+            } else {
+                menuIcon.className = "fa fa-bars";
             }
 
         }

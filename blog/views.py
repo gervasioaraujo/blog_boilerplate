@@ -5,11 +5,11 @@ from .models import Post, Category
 
 
 def index(request):
-    
+
     categories = Category.objects.all()
 
-    posts = Post.objects.order_by('-created_at')
-    paginator = Paginator(posts, 10) # Show 10 posts per page.
+    posts = Post.objects.filter(published=True).order_by('-created_at')
+    paginator = Paginator(posts, 10)  # Show 10 posts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -41,7 +41,7 @@ def posts_by_category(request, category_id):
     categories = Category.objects.all()
 
     category = Category.objects.get(id=category_id)
-    posts = category.post_set.all()
+    posts = category.post_set.filter(published=True).order_by('-created_at')
 
     context = {
         'categories': categories,
@@ -50,4 +50,3 @@ def posts_by_category(request, category_id):
     }
 
     return render(request, "blog/posts_by_category.html", context)
-

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <!-- {% if posts %}
+<!-- {% if posts %}
         <span>Posts mais recentes:</span>
         <ul id="posts-list">
             {% for post in posts %}
@@ -13,29 +13,66 @@
         <p>Nenhum post encontrado.</p>
         {% endif %} -->
 
-    <!-- <ul class="w3-ul"> -->
-    <ul>
-        {% for post in page_obj %}
-        <li class=""><a href="/posts/{{ post.id }}/">{{ post.title }}</a></li>
-        {% endfor %}
-    </ul>
-
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-            <a class="w3-btn" href="?page=1">&laquo; first</a>
-            <a class="w3-btn" href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-
-            {% if page_obj.has_next %}
-            <a class="w3-btn" href="?page={{ page_obj.next_page_number }}">next</a>
-            <a class="w3-btn" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+<!-- <ul id="post-list" class="w3-ul"> -->
+<ul id="post-list">
+    {% for post in page_obj %}
+    <li class="post-item">
+        <a href="/posts/{{ post.id }}/">
+            {{ post.title }}
+        </a>
+        <small>{{ post.created_at|date:'d/m/Y H:m' }}</small>
+        <span>
+            {% if post.summary %}
+            {{ post.summary }}
+            {% else %}
+            {{ post.content|slice:":250"|safe }}...
             {% endif %}
         </span>
-    </div>
+    </li>
+    {% endfor %}
+</ul>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a class="w3-btn" href="?page=1">&laquo; first</a>
+        <a class="w3-btn" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a class="w3-btn" href="?page={{ page_obj.next_page_number }}">next</a>
+        <a class="w3-btn" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<style>
+    ul#post-list {
+        list-style: none;
+        padding: 0;
+
+        /* display: flex; */
+    }
+
+    ul#post-list li {
+        padding: 8px 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .post-item {
+        text-align: justify;
+    }
+
+    .post-item a {
+        font-size: 22px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+</style>
 
 {% endblock content %}
