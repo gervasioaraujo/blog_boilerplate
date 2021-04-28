@@ -1,4 +1,12 @@
-{% extends "blog/base.html" %}
+{% extends "blog/layouts/base.html" %}
+
+{% load static %}
+
+{% block title %}Blog Boilerplate - Post Details{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'blog/css/post_details.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -10,16 +18,5 @@
 {% else %}
 <p>Post encontrado.</p>
 {% endif %}
-
-<style>
-    .justify {
-        text-align: justify;
-    }
-
-    #post-title {
-        font-size: 22px;
-        font-weight: bold;
-    }
-</style>
 
 {% endblock content %}

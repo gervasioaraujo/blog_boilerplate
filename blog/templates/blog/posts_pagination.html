@@ -1,23 +1,18 @@
-{% extends "blog/base.html" %}
+{% extends "blog/layouts/base.html" %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'blog/css/posts_pagination.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<!-- {% if posts %}
-        <span>Posts mais recentes:</span>
-        <ul id="posts-list">
-            {% for post in posts %}
-            <li><a href="/posts/{{ post.id }}/">{{ post.title }}</a></li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p>Nenhum post encontrado.</p>
-        {% endif %} -->
-
-<!-- <ul id="post-list" class="w3-ul"> -->
+{% if page_obj %}
 <ul id="post-list">
     {% for post in page_obj %}
     <li class="post-item">
-        <a href="/posts/{{ post.id }}/">
+        <a href="/posts/{{ post.slug }}/">
             {{ post.title }}
         </a>
         <small>{{ post.created_at|date:'d/m/Y H:m' }}</small>
@@ -50,29 +45,8 @@
     </span>
 </div>
 
-<style>
-    ul#post-list {
-        list-style: none;
-        padding: 0;
-
-        /* display: flex; */
-    }
-
-    ul#post-list li {
-        padding: 8px 0;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .post-item {
-        text-align: justify;
-    }
-
-    .post-item a {
-        font-size: 22px;
-        font-weight: bold;
-        text-decoration: none;
-    }
-</style>
+{% else %}
+<span>Nenhum post encontrado.</span>
+{% endif %}
 
 {% endblock content %}

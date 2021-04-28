@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import Category, Post
+from .forms import PostModelForm
 
 
 class CategoryModelAdmin(admin.ModelAdmin):
@@ -17,6 +18,7 @@ class CategoryModelAdmin(admin.ModelAdmin):
 class PostModelAdmin(admin.ModelAdmin):
 
     list_display = (
+        # 'id',
         'title',
         # 'categories',
         'author',
@@ -25,6 +27,8 @@ class PostModelAdmin(admin.ModelAdmin):
         'created_at',
         'updated_at',
     )
+
+    form = PostModelForm
 
     fields = ('title', 'categories', 'thumbnail', 'content',
               'summary', 'published', 'created_at', 'updated_at')

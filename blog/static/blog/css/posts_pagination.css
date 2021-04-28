@@ -1,0 +1,27 @@
+ul#post-list {
+	list-style: none;
+	padding: 0;
+
+	/* display: flex; */
+}
+
+ul#post-list li {
+	/* padding: 8px 0; */
+	display: flex;
+	flex-direction: column;
+}
+
+.post-item {
+	text-align: justify;
+	margin-bottom: 16px;
+}
+
+.post-item a {
+	font-size: 22px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.pagination {
+	/* margin-top: 16px; */
+}
