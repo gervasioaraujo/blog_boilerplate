@@ -137,6 +137,11 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         # 'height': 300,
         'width': '100%',
+        'extraPlugins': ','.join(
+            [
+                'codesnippet',
+            ]
+        ),
     },
 }
 

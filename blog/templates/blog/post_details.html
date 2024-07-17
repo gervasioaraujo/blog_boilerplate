@@ -13,7 +13,7 @@
 {% if post %}
 <article class="justify">
     <p id="post-title">{{ post.title }}</p>
-    <p>{{ post.content|safe }}</p>
+    <main id="post-content">{{ post.content|safe }}</main>
 </article>
 {% else %}
 <p>Post encontrado.</p>
